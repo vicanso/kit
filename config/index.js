@@ -3,41 +3,20 @@ const path = require('path');
 const prodEnv = require('./prod.env');
 const devEnv = require('./dev.env');
 
-const pkg = require('../package');
+const assetsSubDirectory = 'static';
+const assetsPublicPath = '/';
 
-// the env of the applcation
-const env = process.env.NODE_ENV || 'development';
-
-exports.app = pkg.name;
-
-exports.port = Number.parseInt(process.env.PORT, 10) || 3018;
-
-exports.env = env;
-
-// the application version
-exports.version = pkg.version;
-
-exports.staticOptions = {
-  urlPrefix: '/static',
-  path: path.join(__dirname, 'assets'),
-  maxAge: env === 'development' ? 0 : 365 * 24 * 3600,
-  headers: {
-    Vary: 'Accept-Encoding',
-  },
-  host: process.env.STATIC_HOST || '',
-};
-
-exports.viewPath = path.join(__dirname, '../views');
-
-// app url prefix for all request
-exports.appUrlPrefix = '';
+exports.staticMount = assetsPublicPath + assetsSubDirectory;
+exports.assetPath = path.resolve(__dirname, '../dist');
+exports.staticPath = path.resolve(__dirname, '../dist/static');
+exports.env = process.env.NODE_ENV || 'development';
 
 exports.build = {
   env: prodEnv,
   index: path.resolve(__dirname, '../dist/index.html'),
   assetsRoot: path.resolve(__dirname, '../dist'),
-  assetsSubDirectory: 'static',
-  assetsPublicPath: '/',
+  assetsSubDirectory,
+  assetsPublicPath,
   productionSourceMap: true,
   // Gzip off by default as many popular static hosts such as
   // Surge or Netlify already gzip all static assets for you.
@@ -51,12 +30,13 @@ exports.build = {
   // Set to `true` or `false` to always turn it on or off
   bundleAnalyzerReport: process.env.npm_config_report,
 };
+
 exports.dev = {
   env: devEnv,
   port: 3018,
-  autoOpenBrowser: false,
-  assetsSubDirectory: 'static',
-  assetsPublicPath: '/',
+  autoOpenBrowser: true,
+  assetsSubDirectory,
+  assetsPublicPath,
   proxyTable: {},
   // CSS Sourcemaps off by default because relative paths are "buggy"
   // with this option, according to the CSS-Loader README
