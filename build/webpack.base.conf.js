@@ -10,7 +10,7 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js',
+    app: './src/bootstrap.js',
   },
   output: {
     path: config.build.assetsRoot,
@@ -28,6 +28,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader',
+      },
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
