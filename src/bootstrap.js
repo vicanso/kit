@@ -12,7 +12,18 @@ import '@/assets/pure.css';
 import '@/directives/index';
 import '@/filters/index';
 
+const env = globals.get('CONFIG.env');
 Vue.config.productionTip = false;
+
+Vue.config.errorHandler = function errorHandler(err, vm, info) {
+  if (env === 'development') {
+    // eslint-disable-next-line
+    alert(info);
+  } else {
+    // TODO add error log to backend
+    console.error(err);
+  }
+};
 
 function statistics() {
   const data = {

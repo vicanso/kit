@@ -10,7 +10,7 @@
     form.pure-form(@submit.prevent='submit')
       fieldset
         legend Register your account
-        input(type='text', placeholder='Account', v-model='form.account', v-focus)
+        input(type='text', placeholder='Account', v-model='form.account', v-focus='true')
         input(type='text', placeholder='Email', v-model='form.email')
         input(type='password', placeholder='Password', v-model='form.password')
         button.prue-button.pure-button-primary(type='submit') Register

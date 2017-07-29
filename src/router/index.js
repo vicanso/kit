@@ -30,7 +30,7 @@ const routes = [
   },
 ];
 
-export default new Router({
+const router = new Router({
   strict: globals.get('CONFIG.env') !== 'production',
   routes: [
     {
@@ -40,3 +40,25 @@ export default new Router({
     },
   ],
 });
+
+let stats = null;
+router.beforeEach((to, from, next) => {
+  stats = {
+    to: to.path,
+    from: from.path,
+    startedAt: Date.now(),
+  };
+  /* eslint no-param-reassign:0 */
+  return next();
+});
+
+router.afterEach(() => {
+  // TODO add router stats to backend
+  const use = Date.now() - stats.startedAt;
+  console.dir({
+    use,
+    ...stats,
+  });
+});
+
+export default router;
