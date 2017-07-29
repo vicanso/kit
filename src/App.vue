@@ -10,4 +10,4 @@ export default {
 };
 </script>
 
-<style src="./styles/global.styl", lang="stylus"></style>
+<style src='./styles/global.styl', lang='stylus'></style>

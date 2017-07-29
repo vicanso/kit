@@ -4,9 +4,9 @@
       i.iconfont.icon-back.bold
     .tac {{title}}
     .user
-      div(v-if='!userInfo')
+      div(v-if='status === "loading"')
         | Loading...
-      .tac(v-if='userInfo')
+      .tac(v-else)
         router-link(:to='LOGIN', v-if='userInfo.anonymous') Login
         span(v-if='!userInfo.anonymous') {{userInfo.account}}
 </template>

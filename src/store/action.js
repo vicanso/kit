@@ -8,4 +8,8 @@ export default {
     const res = await userService.me();
     commit(USER_INFO, res);
   },
+  async userLogin({ commit }, data) {
+    const res = await userService.login(data);
+    commit(USER_INFO, res);
+  },
 };

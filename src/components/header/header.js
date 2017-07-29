@@ -17,10 +17,14 @@ export default {
   data() {
     return {
       LOGIN,
+      status: 'loading',
     };
   },
   mounted() {
-    this.getUserInfo().catch((err) => {
+    this.getUserInfo().then(() => {
+      this.status = 'success';
+    }).catch((err) => {
+      this.status = 'error';
       console.error(err.message);
     });
   },

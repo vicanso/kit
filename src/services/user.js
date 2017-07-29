@@ -29,7 +29,7 @@ export function me() {
  * @param {String} email
  * @returns
  */
-export function register(account, password, email) {
+export function register({ account, password, email }) {
   const pwd = crypto.sha256(password);
   const code = crypto.sha256(`${account}-${pwd}-${app}`);
   return request.post(USER_REGISTER, {
@@ -39,7 +39,7 @@ export function register(account, password, email) {
   }).then(res => res.body);
 }
 
-export function login(account, password) {
+export function login({ account, password }) {
   return request.get(USER_LOGIN)
     .noCache()
     .then((res) => {
