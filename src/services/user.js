@@ -24,9 +24,9 @@ export function me() {
 /**
  * Register account
  * @export
- * @param {String} account
- * @param {String} password
- * @param {String} email
+ * @param {String} param.account
+ * @param {String} param.password
+ * @param {String} param.email
  * @returns
  */
 export function register({ account, password, email }) {
@@ -39,6 +39,11 @@ export function register({ account, password, email }) {
   }).then(res => res.body);
 }
 
+/**
+ * User Login
+ * @param {String} param.account
+ * @param {String} param.password
+ */
 export function login({ account, password }) {
   return request.get(USER_LOGIN)
     .noCache()
@@ -53,6 +58,9 @@ export function login({ account, password }) {
     }).then(res => res.body);
 }
 
+/**
+ * User Logout
+ */
 export function logout() {
   return request.del(USER_LOGOUT)
     .then(res => res.body || {

@@ -12,4 +12,8 @@ export default {
     const res = await userService.login(data);
     commit(USER_INFO, res);
   },
+  async userRegister({ commit }, data) {
+    const res = await userService.register(data);
+    commit(USER_INFO, res);
+  },
 };

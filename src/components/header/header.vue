@@ -1,13 +1,14 @@
 <template lang='pug'>
   header.main-header-wrapper.clearfix
-    a.back.tac(href='javascript:;', @click.prevent='$router.go(-1)')
+    a.left.tac(href='javascript:;', @click.prevent='$router.go(-1)')
       i.iconfont.icon-back.bold
     .tac {{title}}
-    .user
+    .user.right
       div(v-if='status === "loading"')
         | Loading...
       .tac(v-else)
-        router-link(:to='LOGIN', v-if='userInfo.anonymous') Login
+        router-link.block(:to='LOGIN', v-if='userInfo.anonymous')
+          i.iconfont.icon-account.bold
         span(v-if='!userInfo.anonymous') {{userInfo.account}}
 </template>
 

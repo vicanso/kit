@@ -1,21 +1,9 @@
-@import '../../styles/common'
+@import '../../styles/basic'
 
 .main-header-wrapper
-  height $MAIN_HEADER_HEIGHT 
-  line-height @height
-  background-color $COLOR_BLUE
-  color $COLOR_WHITE
-  position relative
-  a
-    color $COLOR_WHITE
+  mainHeader()
   .user
-    position absolute
-    right 0
-    top 0
+    width auto
     padding 0 15px
-  .back
-    width $MAIN_HEADER_HEIGHT
-    position absolute
-    left 0
-    height 100%
-    font-size 28px
+    .iconfont
+      font-size 18px

@@ -6,10 +6,12 @@ import globals from '@/helpers/globals';
 import {
   HOME,
   LOGIN,
+  REGISTER,
 } from '@/constants/url';
 
 const Home = r => require.ensure([], () => r(require('@/pages/home/home.vue')), 'basic'); // eslint-disable-line
 const Login = r => require.ensure([], () => r(require('@/pages/login/login.vue')), 'basic'); // eslint-disable-line
+const Register = r => require.ensure([], () => r(require('@/pages/register/register.vue')), 'basic'); // eslint-disable-line
 
 Vue.use(Router);
 
@@ -21,6 +23,10 @@ const routes = [
   {
     path: LOGIN,
     component: Login,
+  },
+  {
+    path: REGISTER,
+    component: Register,
   },
 ];
 

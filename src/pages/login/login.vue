@@ -1,9 +1,12 @@
 <template lang='pug'>
   div
     header
-      a.back.tac(href='javascript:;', @click.prevent='$router.go(-1)')
+      a.left.tac(href='javascript:;', @click.prevent='$router.go(-1)')
         i.iconfont.icon-back.bold
       .tac Login
+      .right.register.tac
+        router-link.block(:to='REGISTER', title='register')
+          i.iconfont.icon-add.bold
     form.pure-form(@submit.prevent='submit')
       fieldset
         legend Login your account

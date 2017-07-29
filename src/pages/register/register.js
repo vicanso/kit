@@ -4,28 +4,28 @@ import {
 
 import _ from '@/helpers/_';
 import {
-  REGISTER,
+  LOGIN,
 } from '@/constants/url';
 
 export default {
   data() {
     return {
-      REGISTER,
+      LOGIN,
       form: {},
     };
   },
 
   methods: {
     submit: function submit() {
-      const data = _.pick(this.form, ['account', 'password']);
-      this.userLogin(data).then(() => {
-        this.$router.go(-1);
+      const data = _.pick(this.form, ['account', 'password', 'email']);
+      this.userRegister(data).then(() => {
+        this.$router.go(-2);
       }).catch((err) => {
         console.error(err);
       });
     },
     ...mapActions([
-      'userLogin',
+      'userRegister',
     ]),
   },
 };
