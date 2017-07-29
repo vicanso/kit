@@ -10,6 +10,8 @@ exports.staticMount = assetsPublicPath + assetsSubDirectory;
 exports.assetPath = path.resolve(__dirname, '../dist');
 exports.staticPath = path.resolve(__dirname, '../dist/static');
 exports.env = process.env.NODE_ENV || 'development';
+exports.server = process.env.SERVER || 'unknown';
+exports.dc = process.env.DC || 'unknown';
 
 exports.build = {
   env: prodEnv,

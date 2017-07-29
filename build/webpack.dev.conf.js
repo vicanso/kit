@@ -29,7 +29,6 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.pug',
       inject: true,
-      env: 'development',
     }),
     new FriendlyErrorsPlugin(),
   ],

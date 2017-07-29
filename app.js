@@ -9,6 +9,12 @@ const readFile = util.promisify(fs.readFile);
 const app = express();
 const port = process.env.PORT || 3018;
 
+function setConfig(html) {
+  return html.replace("env: 'development'", `env: '${config.env}'`)
+    .replace('{{server}}', config.server)
+    .replace('{{dc}}', config.dc);
+}
+
 app.use(config.staticMount, express.static(config.staticPath, {
   setHeaders: (res) => {
     if (config.env !== 'development') {
@@ -24,7 +30,7 @@ app.get('/', async (req, res) => {
     maxAge = 0;
   }
   res.set('Cache-Control', `public, max-age=${maxAge}`);
-  res.send(html);
+  res.send(setConfig(html));
 });
 
 app.listen(port);

@@ -12,8 +12,10 @@ html(lang='zh-CN')
     script.
       (function (global) {
         var CONFIG = {
-          env: "#{htmlWebpackPlugin.options.env}",
+          env: 'development',
           app: 'albi',
+          server: '{{server}}',
+          dc: '{{dc}}',
         };
         var TIMING = {
           data: {},
@@ -32,7 +34,7 @@ html(lang='zh-CN')
           },
           toJSON: function () {
             return this.data;
-          }
+          },
         };
         TIMING.start('page');
         global.TIMING = TIMING;
