@@ -55,6 +55,15 @@ function defaultHandle(req, query) {
   if (query) {
     req.query(query);
   }
+  req.once('error', (err) => {
+    const res = err.response;
+    const id = res.get('X-Response-Id');
+    const body = res.body;
+    if (id && body) {
+      const code = body.code.replace(`${APP_NAME}-`, '');
+      err.message = `${body.message} [${code}-${id.substring(0, 4)}]`;
+    }
+  });
   _.forEach(plugins, plugin => req.use(plugin));
   return req;
 }
