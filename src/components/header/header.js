@@ -20,7 +20,9 @@ export default {
     };
   },
   mounted() {
-    this.getUserInfo();
+    this.getUserInfo().catch((err) => {
+      console.error(err.message);
+    });
   },
   computed: mapState([
     'userInfo',

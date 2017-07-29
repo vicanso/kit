@@ -3,7 +3,7 @@
     main-header(title='Home')
 </template>
 <script>
-import MainHeader from '@/components/header/index.vue';
+import MainHeader from '@/components/header/header.vue';
 
 export default {
   data() {

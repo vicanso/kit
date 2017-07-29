@@ -5,13 +5,17 @@
   line-height @height
   background-color $COLOR_BLUE
   color $COLOR_WHITE
-  display table
-  width 100%
-  > *
-    display table-cell
+  position relative
   a
     color $COLOR_WHITE
   .user
-    width 80px
+    position absolute
+    right 0
+    top 0
+    padding 0 15px
   .back
     width $MAIN_HEADER_HEIGHT
+    position absolute
+    left 0
+    height 100%
+    font-size 28px
