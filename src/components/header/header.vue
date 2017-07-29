@@ -4,7 +4,7 @@
       i.iconfont.icon-back.bold
     .tac {{title}}
     .user.right
-      div(v-if='status === "loading"')
+      div(v-if='userInfo.status === "loading"')
         | Loading...
       .tac(v-else)
         router-link.block(:to='LOGIN', v-if='userInfo.anonymous')

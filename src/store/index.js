@@ -8,7 +8,9 @@ Vue.use(Vuex);
 
 const state = {
   // 用户信息
-  userInfo: null,
+  userInfo: {
+    status: 'loading',
+  },
 };
 
 export default new Vuex.Store({

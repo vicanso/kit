@@ -5,8 +5,20 @@
 </template>
 
 <script>
+import {
+  mapActions,
+} from 'vuex';
+
 export default {
   name: 'app',
+  mounted() {
+    this.getUserInfo().catch((err) => {
+      console.error(err);
+    });
+  },
+  methods: mapActions([
+    'getUserInfo',
+  ]),
 };
 </script>
 
