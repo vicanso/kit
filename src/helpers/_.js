@@ -12,6 +12,7 @@ import find from 'lodash/find';
 import round from 'lodash/round';
 import once from 'lodash/once';
 import extend from 'lodash/extend';
+import isNil from 'lodash/isNil';
 
 export default {
   get,
@@ -28,4 +29,5 @@ export default {
   round,
   once,
   extend,
+  isNil,
 };

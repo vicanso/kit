@@ -10,7 +10,7 @@
     form.pure-form(@submit.prevent='submit')
       fieldset
         legend Login your account
-        input(type='text', placeholder='Account', v-model='form.account')
+        input(type='text', placeholder='Account', v-model='form.account', v-focus)
         input(type='password', placeholder='Password', v-model='form.password')
         button.prue-button.pure-button-primary(type='submit') Login
   

@@ -9,6 +9,8 @@ import store from '@/store';
 import * as statsService from '@/services/stats';
 import '@/assets/iconfont.css';
 import '@/assets/pure.css';
+import '@/directives/index';
+import '@/filters/index';
 
 Vue.config.productionTip = false;
 
