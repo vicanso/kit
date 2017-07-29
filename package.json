@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.1",
-    "http-timing": "^1.0.2",
+    "http-timing": "^1.0.3",
     "lodash": "^4.17.4",
     "pug": "^2.0.0-rc.2",
     "query-string": "^5.0.0",

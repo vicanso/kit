@@ -1,6 +1,7 @@
 /* eslint import/no-extraneous-dependencies:0 */
 import * as request from 'superagent';
 import shortid from 'shortid';
+import HTTPTiming from 'http-timing';
 
 import globals from '@/helpers/globals';
 import _ from '@/helpers/_';
@@ -8,6 +9,9 @@ import debug from '@/helpers/debug';
 
 const STATS_AJAX = '/api/stats/ajax';
 const STATS_EXCEPTION = '/api/stats/exception';
+const httpTiming = new HTTPTiming({
+  max: 3 * 1000,
+});
 
 const APP_NAME = globals.get('CONFIG.app');
 request.Request.prototype.version = function version(v) {
@@ -57,6 +61,9 @@ function defaultHandle(req, query) {
   }
   req.once('error', (err) => {
     const res = err.response;
+    if (!res) {
+      return;
+    }
     const id = res.get('X-Response-Id');
     const body = res.body;
     if (id && body) {
@@ -105,6 +112,9 @@ export function patch(url, data, query) {
   return req;
 }
 
+export function getTimingView() {
+  return httpTiming.toHTML();
+}
 
 function createDebouncePost(url, interval = 3000) {
   const dataList = [];
@@ -172,6 +182,7 @@ function stats() {
       });
     }
     const options = {};
+    let setTiming = null;
     const finished = _.once((res) => {
       if (res) {
         const serverTiming = res.get('Server-Timing');
@@ -184,6 +195,9 @@ function stats() {
           status: res.status,
           hit: parseInt(res.get('X-Hits') || 0, 10),
         });
+        setTiming(_.extend({
+          serverTiming,
+        }, _.pick(options, ['status', 'use'])));
         delete options.startedAt;
         statsAjax(options);
       }
@@ -193,6 +207,7 @@ function stats() {
       options.method = req.method;
       options.startedAt = Date.now();
       options.status = -1;
+      setTiming = httpTiming.add(_.pick(options, ['method', 'url']));
     });
 
     req.once('error', finished);
