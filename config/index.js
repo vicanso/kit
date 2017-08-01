@@ -2,16 +2,10 @@
 const path = require('path');
 const prodEnv = require('./prod.env');
 const devEnv = require('./dev.env');
+const basicConfig = require('./basic');
 
-const assetsSubDirectory = 'static';
-const assetsPublicPath = '/';
-
-exports.staticMount = assetsPublicPath + assetsSubDirectory;
-exports.assetPath = path.resolve(__dirname, '../dist');
-exports.staticPath = path.resolve(__dirname, '../dist/static');
-exports.env = process.env.NODE_ENV || 'development';
-exports.server = process.env.SERVER || 'unknown';
-exports.dc = process.env.DC || 'unknown';
+const assetsSubDirectory = basicConfig.assetsSubDirectory;
+const assetsPublicPath = basicConfig.assetsPublicPath;
 
 exports.build = {
   env: prodEnv,

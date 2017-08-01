@@ -3,7 +3,7 @@ const util = require('util');
 const fs = require('fs');
 const path = require('path');
 
-const config = require('./config');
+const config = require('./config/basic');
 
 const readFile = util.promisify(fs.readFile);
 const app = express();
