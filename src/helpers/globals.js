@@ -1,4 +1,4 @@
-import _ from '@/helpers/_';
+import _ from 'lodash';
 
 function get(path, defaultValue) {
   /* eslint no-undef:0 */

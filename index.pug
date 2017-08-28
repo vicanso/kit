@@ -6,9 +6,9 @@ html(lang='zh-CN')
     meta(name="HandheldFriendly", content="True")
     meta(name="viewport", content="width=device-width, initial-scale=1, user-scalable=no")
     meta(http-equiv="cleartype", content="on")
-    meta(name='keywords', content='vue, framework')
-    meta(name='description', content='the vue framework')
-    meta(name='author',content='Tree.Xie')
+    meta(name='keywords', content='koa, vue')
+    meta(name='description', content='koa')
+    meta(name='author', content='Tree Xie')
     script.
       (function (global) {
         var CONFIG = {
@@ -16,6 +16,7 @@ html(lang='zh-CN')
           app: 'albi',
           server: '{{server}}',
           dc: '{{dc}}',
+          lang: 'en',
         };
         var TIMING = {
           data: {},
@@ -41,8 +42,9 @@ html(lang='zh-CN')
         global.TIMING = TIMING;
       })(this);
   body
+    #app 
+      //- TODO 使用一张logo的加载中的gif替换
+      p(style="margin:100px auto; text-align:center") Loading...
     script.
       TIMING.start('js');
-    #app
-      router-view
-  //- built files will be auto injected -->
+    //- built files will be auto injected

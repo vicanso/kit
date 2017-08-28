@@ -1,6 +1,5 @@
 import Vue from 'vue';
-
-import _ from '@/helpers/_';
+import _ from 'lodash';
 
 Vue.filter('number', (value, precision) => {
   const v = parseFloat(value);

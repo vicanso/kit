@@ -1,4 +1,6 @@
-FROM node:alpine
+FROM node:8-alpine
+
+EXPOSE 3018
 
 ADD ./ /app
 
@@ -8,4 +10,5 @@ RUN cd /app \
   && rm -rf /app/node_modules \
   && npm i --production \
   && sh ./clear.sh
+
 CMD ["node", "/app/app"]

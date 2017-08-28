@@ -24,6 +24,12 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
+    "indent": ["error", 2],
+    'key-spacing': 0,
+    'no-multi-spaces': 0,
+    'global-require': 0,
+    'no-param-reassign': 0,
+    'no-shadow': 0,
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',

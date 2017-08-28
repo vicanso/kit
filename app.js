@@ -3,34 +3,81 @@ const util = require('util');
 const fs = require('fs');
 const path = require('path');
 
-const config = require('./config/basic');
+
+const config = require('./config/base');
 
 const readFile = util.promisify(fs.readFile);
 const app = express();
 const port = process.env.PORT || 3018;
 
-function setConfig(html) {
-  return html.replace("env: 'development'", `env: '${config.env}'`)
+const pageUrls = ['/', '/register', '/login'];
+
+function setConfig(html, lang = 'en') {
+  const {
+    staticMount,
+    staticPrefix,
+  } = config;
+  const reg = new RegExp(`${staticMount}/`, 'g');
+  const newHtml = html.replace("env: 'development'", `env: '${config.env}'`)
     .replace('{{server}}', config.server)
-    .replace('{{dc}}', config.dc);
+    .replace('{{dc}}', config.dc)
+    .replace("lang: 'en'", `lang: '${lang}'`);
+  if (!staticPrefix) {
+    return newHtml;
+  }
+  return newHtml.replace(reg, `${staticPrefix}${staticMount}/`);
 }
 
-app.use(config.staticMount, express.static(config.staticPath, {
-  setHeaders: (res) => {
-    if (config.env !== 'development') {
-      res.set('Cache-Control', 'public, max-age=31536000, s-maxage=600');
-    }
-  },
-}));
-
-app.get('/', async (req, res) => {
+async function pageRender(req, res) {
   const html = await readFile(path.resolve(config.assetPath, 'index.html'), 'utf8');
   let maxAge = 600;
   if (config.env === 'development') {
     maxAge = 0;
   }
   res.set('Cache-Control', `public, max-age=${maxAge}`);
-  res.send(setConfig(html));
+  res.send(setConfig(html, req.lang));
+}
+
+// for dev test
+if (process.env.DEV) {
+  const proxyMiddleware = require('http-proxy-middleware');
+  app.use(proxyMiddleware('/api', {
+    target: 'http://red',
+  }));
+}
+
+app.use(config.staticMount, express.static(config.staticPath, {
+  setHeaders: (res) => {
+    if (config.env !== 'development') {
+      res.set('Cache-Control', 'public, max-age=31536000, s-maxage=3600');
+    }
+  },
+}));
+app.use((req, res, next) => {
+  const arr = req.url.split('/');
+  if (['zh', 'en'].includes(arr[1])) {
+    req.lang = arr[1];
+    arr.splice(1, 1);
+    req.url = arr.join('/') || '/';
+    req.originalUrl = req.url;
+  }
+  next();
+});
+
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
+
+pageUrls.forEach((pageUrl) => {
+  app.get(pageUrl, async (req, res) => {
+    try {
+      await pageRender(req, res);
+    } catch (err) {
+      console.error(err.stack);
+      // TODO ERROR page
+      res.status(500).send(err.message);
+    }
+  });
 });
 
 app.listen(port);

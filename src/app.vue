@@ -1,25 +1,36 @@
 <template lang='pug'>
-  div
-    transition(name='router-fade', mode='out-in')
-      router-view
+  #app
+    app-header
+    router-view
 </template>
 
 <script>
-import {
-  mapActions,
-} from 'vuex';
+import { mapActions } from 'vuex';
+import AppHeader from '@/components/app-header';
+
 
 export default {
-  name: 'app',
-  mounted() {
-    this.getUserInfo().catch((err) => {
-      console.error(err);
-    });
+  components: {
+    AppHeader,
   },
-  methods: mapActions([
-    'getUserInfo',
-  ]),
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapActions([
+      'langList',
+      'userGet',
+    ]),
+  },
+  async beforeMount() {
+    try {
+      await this.userGet();
+      await this.langList('basic');
+    } catch (err) {
+      this.$alert(err);
+    }
+  },
 };
 </script>
 
-<style src='./styles/global.styl', lang='stylus'></style>
+<style src='@/assets/styles/app.sss' lang='postcss'></style>

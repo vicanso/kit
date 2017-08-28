@@ -29,10 +29,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.pug$/,
-        loader: 'pug-loader',
-      },
-      {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
@@ -45,6 +41,10 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig,
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader',
       },
       {
         test: /\.js$/,
