@@ -1,5 +1,5 @@
 <template lang="pug">
-  .el-menu--dark(
+  div(
     :class='$style.header'
   )
     el-dropdown.pull-right(

@@ -34,7 +34,7 @@ exports.dev = {
   assetsSubDirectory,
   assetsPublicPath,
   proxyTable: {
-    '/api': 'http://113.67.180.95:9011',
+    '/api': 'http://red',
   },
   // CSS Sourcemaps off by default because relative paths are "buggy"
   // with this option, according to the CSS-Loader README
