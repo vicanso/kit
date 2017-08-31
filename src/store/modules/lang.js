@@ -17,7 +17,7 @@ const common = {
     cancel: 'cancel',
     httpAborted: 'The request is timeout, please try again later',
   },
-  cn: {
+  zh: {
     loading: '正在加载……',
     confirm: '确认',
     cancel: '取消',
