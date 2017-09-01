@@ -24,7 +24,7 @@ function setConfig(html, lang = 'en') {
     .replace('{{dc}}', config.dc)
     .replace("lang: 'en'", `lang: '${lang}'`)
     .replace("appUrlPrefix: ''", `appUrlPrefix: '${config.appUrlPrefix}'`);
-  if (!staticPrefix) {
+  if (!staticPrefix && !appUrlPrefix) {
     return newHtml;
   }
   return newHtml.replace(reg, `${appUrlPrefix}${staticPrefix}${staticMount}/`);
