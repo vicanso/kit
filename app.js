@@ -62,9 +62,12 @@ app.use((req, res, next) => {
     appUrlPrefix,
   } = config;
   if (appUrlPrefix && req.url.indexOf(appUrlPrefix) === 0) {
-    req.url = req.url.substring(appUrlPrefix.length) || '/';
+    req.url = req.url.substring(appUrlPrefix.length);
   }
   req.originalUrl = req.url;
+  if (!req.url) {
+    res.redirect(`${config.appUrlPrefix}/`);
+  }
   next();
 });
 
