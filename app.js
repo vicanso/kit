@@ -27,7 +27,7 @@ function setConfig(html, lang = 'en') {
   if (!staticPrefix && !appUrlPrefix) {
     return newHtml;
   }
-  return newHtml.replace(reg, `${appUrlPrefix}${staticPrefix}${staticMount}/`);
+  return newHtml.replace(reg, `${staticMount}/`);
 }
 
 async function pageRender(req, res) {
@@ -44,9 +44,18 @@ async function pageRender(req, res) {
 if (process.env.DEV) {
   const proxyMiddleware = require('http-proxy-middleware');
   app.use(proxyMiddleware('/api', {
-    target: 'http://red',
+    target: 'http://127.0.0.1:5018',
   }));
 }
+
+app.use(config.staticMount, express.static(config.staticPath, {
+  setHeaders: (res) => {
+    if (config.env !== 'development') {
+      res.set('Cache-Control', 'public, max-age=31536000, s-maxage=3600');
+    }
+  },
+}));
+
 
 app.use((req, res, next) => {
   const {
@@ -59,22 +68,14 @@ app.use((req, res, next) => {
   next();
 });
 
-
-app.use(config.staticMount, express.static(config.staticPath, {
-  setHeaders: (res) => {
-    if (config.env !== 'development') {
-      res.set('Cache-Control', 'public, max-age=31536000, s-maxage=3600');
-    }
-  },
-}));
 app.use((req, res, next) => {
   const arr = req.url.split('/');
   if (['zh', 'en'].includes(arr[1])) {
     req.lang = arr[1];
     arr.splice(1, 1);
     req.url = arr.join('/') || '/';
-    req.originalUrl = req.url;
   }
+  req.originalUrl = req.url;
   next();
 });
 

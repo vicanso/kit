@@ -21,3 +21,7 @@
 - refactor：重构（即不是新增功能，也不是修改bug的代码变动）
 - test：增加测试
 - chore：构建过程或辅助工具的变动
+
+## build
+
+如果有指定`APP_URL_PREFIX`时，需要使用`APP_URL_PREFIX=/admin npm build`
