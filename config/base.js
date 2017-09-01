@@ -14,3 +14,4 @@ exports.env = process.env.NODE_ENV || 'development';
 exports.server = process.env.SERVER || 'unknown';
 exports.dc = process.env.DC || 'unknown';
 exports.staticPrefix = process.env.STATIC_PREFIX || '';
+exports.appUrlPrefix = process.env.APP_URL_PREFIX || '';

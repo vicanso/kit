@@ -16,16 +16,18 @@ function setConfig(html, lang = 'en') {
   const {
     staticMount,
     staticPrefix,
+    appUrlPrefix,
   } = config;
   const reg = new RegExp(`${staticMount}/`, 'g');
   const newHtml = html.replace("env: 'development'", `env: '${config.env}'`)
     .replace('{{server}}', config.server)
     .replace('{{dc}}', config.dc)
-    .replace("lang: 'en'", `lang: '${lang}'`);
+    .replace("lang: 'en'", `lang: '${lang}'`)
+    .replace("appUrlPrefix: ''", `appUrlPrefix: '${config.appUrlPrefix}'`);
   if (!staticPrefix) {
     return newHtml;
   }
-  return newHtml.replace(reg, `${staticPrefix}${staticMount}/`);
+  return newHtml.replace(reg, `${appUrlPrefix}${staticPrefix}${staticMount}/`);
 }
 
 async function pageRender(req, res) {
@@ -45,6 +47,18 @@ if (process.env.DEV) {
     target: 'http://red',
   }));
 }
+
+app.use((req, res, next) => {
+  const {
+    appUrlPrefix,
+  } = config;
+  if (appUrlPrefix && req.url.indexOf(appUrlPrefix) === 0) {
+    req.url = req.url.substring(appUrlPrefix.length) || '/';
+  }
+  req.originalUrl = req.url;
+  next();
+});
+
 
 app.use(config.staticMount, express.static(config.staticPath, {
   setHeaders: (res) => {

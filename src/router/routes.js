@@ -6,12 +6,13 @@ const view = name => (resolve) => {
 };
 
 const path = (name) => {
+  const appUrlPrefix = globals.get('CONFIG.appUrlPrefix');
   const lang = globals.get('CONFIG.lang');
   const currentPath = paths[name];
   if (!lang || lang === 'en') {
-    return currentPath;
+    return `${appUrlPrefix}${currentPath}`;
   }
-  return `/${lang}${currentPath}`;
+  return `${appUrlPrefix}/${lang}${currentPath}`;
 };
 
 const create = name => ({
