@@ -39,7 +39,7 @@ export default {
         const name = basicLangs[key];
         return {
           name,
-          path: paths[key],
+          path: paths(key),
         };
       });
     },
