@@ -19,7 +19,7 @@ function setConfig(html, lang = 'en') {
     appUrlPrefix,
   } = config;
   const reg = new RegExp(`${staticMount}/`, 'g');
-  const newHtml = html.replace("env: 'development'", `env: '${config.env}'`)
+  const newHtml = html.replace(/env: '\S+?'/, `env: '${config.env}'`)
     .replace('{{server}}', config.server)
     .replace('{{dc}}', config.dc)
     .replace("lang: 'en'", `lang: '${lang}'`)

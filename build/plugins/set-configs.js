@@ -10,8 +10,8 @@ SetConfigs.prototype.apply = function apply(compiler) {
   compiler.plugin('compilation', (compilation) => {
     compilation.plugin('html-webpack-plugin-before-html-processing', (htmlPluginData, cb) => {
       let html = htmlPluginData.html;
-      html = html.replace("env: 'development',", `env: '${env}',`)
-        .replace("target: 'web',", `target: '${target}',`);
+      html = html.replace(/env: '\S+?'/, `env: '${env}'`)
+        .replace(/target: '\S+?'/, `target: '${target}'`);
       htmlPluginData.html = html;
       cb(null, htmlPluginData);
     });
