@@ -19,7 +19,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'element-ui';
-import '@/assets/theme/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/icons/iconfont.css';
 
 import App from '@/app';

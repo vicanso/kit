@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const SetConfigs = require('./plugins/set-configs');
 // 缩小lodash的打包代码 https://github.com/lodash/lodash-webpack-plugin
 
 const nodeModulePath = path.join(__dirname, '../node_modules');
@@ -35,6 +36,12 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
   },
   plugins: [
+    new SetConfigs({
+      options: {
+        env: process.env.NODE_ENV,
+        target: process.env.TARGET || 'web',
+      },
+    }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,
