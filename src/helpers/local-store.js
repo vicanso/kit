@@ -1,6 +1,6 @@
 import * as store from 'store/dist/store.modern';
 import _ from 'lodash';
-import EE from 'eventemitter3';
+import EE from 'events';
 
 const emiter = new EE();
 
