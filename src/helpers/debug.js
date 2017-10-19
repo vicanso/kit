@@ -1,4 +1,4 @@
-/* eslint import/no-extraneous-dependencies:0 */
+// eslint-disable-next-line
 import debug from 'debug';
 import * as qs from 'query-string';
 

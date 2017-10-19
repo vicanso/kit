@@ -1,7 +1,8 @@
 import paths from '@/router/paths';
 
 const view = name => (resolve) => {
-    require([`@/views/${name}/index.vue`], resolve); // eslint-disable-line
+  // eslint-disable-next-line
+  require([`@/views/${name}/index.vue`], resolve);
 };
 
 

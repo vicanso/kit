@@ -72,7 +72,7 @@ Vue.prototype.$alert = (err) => {
   });
 };
 
-/* eslint-disable no-new */
+// eslint-disable-next-line
 new Vue({
   el: '#app',
   router,

@@ -1,12 +1,12 @@
 import _ from 'lodash';
 
 function get(path, defaultValue) {
-  /* eslint no-undef:0 */
+  // eslint-disable-next-line
   return _.get(window, path, defaultValue);
 }
 
 function set(path, value) {
-  /* eslint no-undef:0 */
+  // eslint-disable-next-line
   _.set(window, path, value);
 }
 
