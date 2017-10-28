@@ -19,8 +19,16 @@ export default {
       if (target.isIntersecting) {
         this.startToLoading = true;
         io.disconnect();
+        this.io = null;
       }
     });
     io.observe(this.$el);
+    this.io = io;
+  },
+  beforeDestroy() {
+    // 如果在删除时，并没有disconnect，调用disconnect
+    if (this.io) {
+      this.io.disconnect();
+    }
   },
 };

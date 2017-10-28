@@ -6,7 +6,7 @@ module.exports = {
     'postcss-nested-props': {},
     'postcss-calc': {},
     'postcss-pxtorem': {
-      propList: ['*']
+      propList: ['font-size']
     },
     'postcss-custom-properties': {},
     'postcss-hexrgba': {},
