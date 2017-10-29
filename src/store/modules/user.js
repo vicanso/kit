@@ -44,6 +44,7 @@ const userLogin = async ({ commit }, { account, password }) => {
     password: code,
   });
   commit(type(USER_INFO), res.body);
+  return res;
 };
 
 const userRegister = async ({ commit }, { account, password, email }) => {
@@ -53,14 +54,16 @@ const userRegister = async ({ commit }, { account, password, email }) => {
     email,
   });
   commit(type(USER_INFO), res.body);
+  return res;
 };
 
 const userLogout = async ({ commit }) => {
-  await http.del(USERS_LOGOUT)
+  const res = await http.del(USERS_LOGOUT)
     .noCache();
   commit(type(USER_INFO), {
     anonymous: true,
   });
+  return res;
 };
 
 export const actions = {

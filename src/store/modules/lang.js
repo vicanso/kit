@@ -46,13 +46,14 @@ const langList = async ({ commit }, category) => {
   }
   catList = _.filter(catList, cat => !state[cat]);
   if (catList.length === 0) {
-    return;
+    return null;
   }
   const res = await http.get(`${LANGS}/lang`)
     .query({
       category: catList,
     });
   commit(type(LANG_LIST), res.body);
+  return res;
 };
 
 

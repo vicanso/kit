@@ -14,6 +14,7 @@ import {
   Input,
   Button,
   Menu,
+  Submenu,
   MenuItem,
   Dropdown,
   DropdownMenu,
@@ -22,7 +23,7 @@ import {
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/icons/iconfont.css';
 
-import App from '@/app';
+import App from '@/views/app';
 import router from '@/router';
 import store from '@/store';
 
@@ -58,6 +59,7 @@ Vue.use(Loading)
   .use(Input)
   .use(Button)
   .use(Menu)
+  .use(Submenu)
   .use(MenuItem)
   .use(Dropdown)
   .use(DropdownMenu)

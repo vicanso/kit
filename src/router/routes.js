@@ -16,4 +16,5 @@ export default [
   create('home'),
   create('login'),
   create('register'),
+  create('i18n'),
 ];

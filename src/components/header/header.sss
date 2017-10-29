@@ -1,0 +1,27 @@
+@import '../../assets/styles/variables.sss'
+
+.header
+  margin-left: $MAIN_NAV_WIDTH
+  height: $MAIN_HEADER_HEIGHT
+  border-bottom: 1px solid $COLOR_GRAY
+  background-color: $COLOR_WHITE
+  overflow: hidden
+
+.languageSeletor
+  margin: 0 15px
+  $lineHeight: 24px
+  line-height: $lineHeight
+  padding: calc(($MAIN_HEADER_HEIGHT - $lineHeight) / 2) 0
+
+.functions
+  line-height: calc($MAIN_HEADER_HEIGHT - 20px)
+  padding: 10px 
+  border-right: 1px solid $COLOR_GRAY
+  a
+    text-align: center
+    width: 50px
+    color: #8e9aa9
+    display: inline-block
+  .user
+    i
+      margin-right: 3px

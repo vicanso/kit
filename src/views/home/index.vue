@@ -2,7 +2,7 @@
   div(
     :class='$style.slideWrapper'
   )
-    h1.tac Thanks for downloading the best PDF Editor for your Mac!
+    h1.tac Thanks for !
 </template>
 
 

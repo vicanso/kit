@@ -6,6 +6,7 @@ const paths = {
   aboutUs: '/about-us',
   login: '/login',
   register: '/register',
+  i18n: '/i18n',
 };
 
 export default function get(name) {

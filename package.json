@@ -47,7 +47,7 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
-    "element-ui": "^2.0.0-rc.1",
+    "element-ui": "^2.0.1",
     "es6-promise": "^4.1.1",
     "eslint": "^4.3.0",
     "eslint-config-airbnb-base": "^11.1.3",
