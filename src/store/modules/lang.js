@@ -1,5 +1,9 @@
 import _ from 'lodash';
-import { LANGS } from '@/http/apis';
+import {
+  LANGS,
+  LANGS_UPDATE,
+  LANGS_CATEGORIES,
+} from '@/http/apis';
 import * as http from '@/http';
 import { setType } from '@/store/utils';
 import {
@@ -39,6 +43,7 @@ const mutations = {
   },
 };
 
+// 获取多语言配置(只返回单一语言配置)
 const langList = async ({ commit }, category) => {
   let catList = category;
   if (!_.isArray(catList)) {
@@ -56,9 +61,43 @@ const langList = async ({ commit }, category) => {
   return res;
 };
 
+// 获取多语言配置的分类
+const langListCategory = async () => {
+  const res = await http.get(LANGS_CATEGORIES);
+  return res;
+};
+
+// 获取多语言配置的原始配置
+const langListOriginal = async (tmp, category) => {
+  const res = await http.get(LANGS)
+    .query({
+      category,
+    });
+  return res;
+};
+
+
+// 更新多语言配置
+const langUpdate = async (tmp, { id, data }) => {
+  const res = await http.patch(LANGS_UPDATE.replace(':id', id))
+    .send(data);
+  return res;
+};
+
+// 增加多语言配置
+const langAdd = async (tmp, data) => {
+  const res = await http.post(LANGS)
+    .send(data);
+  return res;
+};
+
 
 export const actions = {
   langList,
+  langListCategory,
+  langListOriginal,
+  langUpdate,
+  langAdd,
 };
 
 export default {

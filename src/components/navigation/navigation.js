@@ -5,22 +5,35 @@ export default {
     return {
       items: [
         {
-          name: '系统配置',
+          name: 'systemSetting',
           items: [
             {
               name: 'i18n',
+              route: 'i18n',
             },
           ],
         },
         {
-          name: '测试配置',
+          name: 'testSetting',
         },
       ],
     };
   },
+  methods: {
+    go(item) {
+      const route = item.route;
+      if (!route) {
+        return;
+      }
+      this.$router.push({
+        name: route,
+      });
+    },
+  },
   computed: {
     ...mapState({
       userInfo: ({ user }) => user.info,
+      basicLangs: ({ lang }) => lang.basic,
     }),
   },
 };

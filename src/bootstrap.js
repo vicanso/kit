@@ -13,6 +13,11 @@ import {
   FormItem,
   Input,
   Button,
+  Alert,
+  Tabs,
+  TabPane,
+  Table,
+  TableColumn,
   Menu,
   Submenu,
   MenuItem,
@@ -58,6 +63,11 @@ Vue.use(Loading)
   .use(FormItem)
   .use(Input)
   .use(Button)
+  .use(Alert)
+  .use(Tabs)
+  .use(TabPane)
+  .use(Table)
+  .use(TableColumn)
   .use(Menu)
   .use(Submenu)
   .use(MenuItem)
@@ -72,6 +82,31 @@ Vue.prototype.$alert = (err) => {
     message: err.message,
     type: 'error',
   });
+  if (env !== 'production') {
+    throw err;
+  }
+};
+// 全局的加载loading
+Vue.prototype.$lockLoading = function lockLoading(delay = 30) {
+  let loading = null;
+  const timer = setTimeout(() => {
+    loading = this.$loading({
+      lock: true,
+      text: 'Loading',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)',
+    });
+  }, delay);
+  return () => {
+    clearTimeout(timer);
+    if (loading) {
+      loading.close();
+    }
+  };
+};
+
+Vue.prototype.$next = function next() {
+  return new Promise(resolve => this.$nextTick(resolve));
 };
 
 // eslint-disable-next-line

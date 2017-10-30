@@ -5,7 +5,7 @@
     .font24(
       :class='$style.logo'
     ) KIT 
-    el-menu(v-if='userInfo.account')
+    el-menu
       el-submenu(
         v-for='item, $index in items'
         :index='"" + $index'
@@ -13,12 +13,13 @@
       )
         template(
           slot='title'
-        ) {{ item.name }} 
+        ) {{ basicLangs[item.name] }} 
         el-menu-item(
           v-for='subItem, $subIndex in item.items'
           :index='$index + "-" + $subIndex'
           :key='subItem.name'
-        ) {{ subItem.name }}
+          @click.native='go(subItem)'
+        ) {{ basicLangs[subItem.name] }}
 </template>
 
 <script src='./navigation.js'></script>

@@ -8,3 +8,5 @@ export const STATS_PAGE = '/stats/statistics';
 export const STATS = '/stats';
 
 export const LANGS = '/i18ns';
+export const LANGS_UPDATE = '/i18ns/:id';
+export const LANGS_CATEGORIES = '/i18ns/categories';
