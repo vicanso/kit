@@ -12,6 +12,7 @@ import {
   Form,
   FormItem,
   Input,
+  Radio,
   Button,
   Alert,
   Tabs,
@@ -62,6 +63,7 @@ Vue.use(Loading)
   .use(Form)
   .use(FormItem)
   .use(Input)
+  .use(Radio)
   .use(Button)
   .use(Alert)
   .use(Tabs)

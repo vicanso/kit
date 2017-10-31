@@ -16,72 +16,24 @@
         )
           el-table-column(
             :label='basicLangs.name'
+            prop='name'
           )
-            template(
-              slot-scope='scope'
-            )
-              div(
-                v-if='scope.$index === editIndex'
-              )
-                el-input(
-                  type='text'
-                  v-model='editItem.name'
-                )
-              span(
-                v-else
-              ) {{ scope.row.name }}
           el-table-column(
             :label='basicLangs.english'
+            prop='en'
           )
-            template(
-              slot-scope='scope'
-            )
-              div(
-                v-if='scope.$index === editIndex'
-              )
-                el-input(
-                  type='text'
-                  v-model='editItem.en'
-                )
-              span(
-                v-else
-              ) {{ scope.row.en }}
           el-table-column(
             :label='basicLangs.chinese'
+            prop='zh'
           )
-            template(
-              slot-scope='scope'
-            )
-              div(
-                v-if='scope.$index === editIndex'
-              )
-                el-input(
-                  type='text'
-                  v-model='editItem.zh'
-                )
-              span(
-                v-else
-              ) {{ scope.row.zh }}
           el-table-column(
             :label='basicLangs.operation'
           )
             template(
               slot-scope='scope'
             )
-              div(
-                v-if='scope.$index === editIndex'
-              )
-                a.capitalize(
-                  href='javascript:;'
-                  @click='update'
-                ) {{ basicLangs.update }}
-                a.capitalize(
-                  href='javascript:;'
-                  @click='cancelEdit'
-                ) {{ basicLangs.cancel }}
               a.capitalize(
                 href='javascript:;'
-                v-else
                 @click='goToEdit(scope.$index)'
               ) {{ basicLangs.edit }}
         el-button.capitalize.mtop10(
@@ -98,6 +50,7 @@
       el-form-item(
         v-for='item in formItems'
         :label='basicLangs[item.name]'
+        :key='item.name'
       )
         el-input(
           v-model='form[item.key]'
@@ -105,8 +58,8 @@
       el-form-item
         el-button.capitalize(
           type='primary'
-          @click.native='save'
-        ) {{ basicLangs.save }}
+          @click.native='submit'
+        ) {{ form._id ? basicLangs.update : basicLangs.save }}
         el-button.capitalize(
           @click.native='backToList'
         ) {{ basicLangs.cancel }}
@@ -124,7 +77,7 @@
         v-if='!userInfo.account'
       )
       div(
-        v-else-if='mode === "add"'
+        v-else-if='mode === "form"'
         :class='$style.form'
       )
         +AddForm

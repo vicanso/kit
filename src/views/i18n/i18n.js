@@ -1,6 +1,7 @@
 import { mapActions, mapState } from 'vuex';
 import _ from 'lodash';
 
+const I18N_KEYS = 'category name zh en'.split(' ');
 export default {
   data() {
     return {
@@ -12,9 +13,7 @@ export default {
       i18ns: null,
       // 编辑的行号
       editIndex: -1,
-      editItem: null,
-      editKeysList: 'name en zh'.split(' '),
-      // 模式（add:新增）
+      // 模式form
       mode: '',
       // 表单元素
       form: null,
@@ -50,7 +49,7 @@ export default {
       this.form = {
         category: this.active,
       };
-      this.mode = 'add';
+      this.mode = 'form';
     },
     // 回到列表模式
     backToList() {
@@ -60,15 +59,18 @@ export default {
     goToEdit(index) {
       const {
         i18ns,
-        editKeysList,
       } = this;
+      this.form = _.pick(i18ns[index], ['_id'].concat(I18N_KEYS));
+      this.mode = 'form';
       this.editIndex = index;
-      this.editItem = _.pick(i18ns[index], editKeysList);
     },
-    // 取消编辑
-    cancelEdit() {
-      this.editIndex = -1;
-      this.editItem = null;
+    submit() {
+      // eslint-disable-next-line
+      if (this.form._id) {
+        this.update();
+      } else {
+        this.save();
+      }
     },
     // 新增加配置
     async save() {
@@ -90,21 +92,19 @@ export default {
     async update() {
       const {
         editIndex,
-        editItem,
+        form,
         i18ns,
-        editKeysList,
       } = this;
       const originalItem = i18ns[editIndex];
       const updateData = {};
-      _.forEach(editKeysList, (key) => {
-        const value = editItem[key];
+      _.forEach(I18N_KEYS, (key) => {
+        const value = form[key];
         if (value !== originalItem[key]) {
           updateData[key] = value;
         }
       });
       const done = () => {
-        this.editIndex = -1;
-        this.editItem = null;
+        this.mode = '';
       };
       if (_.isEmpty(updateData)) {
         done();
@@ -135,7 +135,6 @@ export default {
       }
       const close = this.$lockLoading();
       try {
-        this.editIndex = -1;
         const {
           body,
         } = await this.langListOriginal(category);

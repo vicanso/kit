@@ -7,6 +7,7 @@ const paths = {
   login: '/login',
   register: '/register',
   i18n: '/i18n',
+  mock: '/mock',
 };
 
 export default function get(name) {

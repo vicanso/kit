@@ -17,4 +17,5 @@ export default [
   create('login'),
   create('register'),
   create('i18n'),
+  create('mock'),
 ];

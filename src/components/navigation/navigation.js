@@ -15,6 +15,12 @@ export default {
         },
         {
           name: 'testSetting',
+          items: [
+            {
+              name: 'mock',
+              route: 'mock',
+            },
+          ],
         },
       ],
     };

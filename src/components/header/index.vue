@@ -36,7 +36,7 @@
         :class='$style.user'
       )
         span.el-dropdown-link
-          i.el-icon-setting
+          i.iconfont.icon-account.bold
           | {{ userInfo.account }}
         el-dropdown-menu(
           slot='dropdown'

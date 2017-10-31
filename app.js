@@ -10,7 +10,7 @@ const readFile = util.promisify(fs.readFile);
 const app = express();
 const port = process.env.PORT || 3018;
 
-const pageUrls = ['/', '/register', '/login'];
+const pageUrls = ['/', '/register', '/login', '/i18n', '/mock'];
 
 function setConfig(html, lang = 'en') {
   const {
