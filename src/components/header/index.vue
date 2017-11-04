@@ -12,8 +12,12 @@
         el-dropdown-menu(
           slot='dropdown'
         )
-          el-dropdown-item English 
-          el-dropdown-item 中文
+          el-dropdown-item(
+            @click.native='handleLangSelect("en")'
+          ) English 
+          el-dropdown-item(
+            @click.native='handleLangSelect("zh")'
+          ) 中文
     .pull-right(
       :class='$style.functions'
     )
