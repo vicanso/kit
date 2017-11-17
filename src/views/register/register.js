@@ -44,7 +44,6 @@ export default {
   methods: {
     ...mapActions([
       'userRegister',
-      'langList',
     ]),
     async onRegister() {
       const { account, email, password } = this.form;
@@ -61,8 +60,5 @@ export default {
         this.loading = false;
       }
     },
-  },
-  async beforeMount() {
-    await this.langList('user');
   },
 };

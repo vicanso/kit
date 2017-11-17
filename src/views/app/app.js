@@ -26,7 +26,7 @@ export default {
   async beforeMount() {
     try {
       await this.userGet();
-      await this.langList('basic');
+      await this.langList(['basic', 'user']);
       this.loading = false;
     } catch (err) {
       this.$alert(err);

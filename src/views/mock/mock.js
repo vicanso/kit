@@ -121,6 +121,7 @@ export default {
     ...mapState({
       userInfo: ({ user }) => user.info,
       basicLangs: ({ lang }) => lang.basic,
+      userLangs: ({ lang }) => lang.user,
     }),
   },
   async beforeMount() {

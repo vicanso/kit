@@ -37,7 +37,6 @@ export default {
   methods: {
     ...mapActions([
       'userLogin',
-      'langList',
     ]),
     async onLogin() {
       const { account, password } = this.form;
@@ -57,8 +56,5 @@ export default {
         this.loading = false;
       }
     },
-  },
-  async beforeMount() {
-    await this.langList('user');
   },
 };

@@ -3,6 +3,8 @@ import {
   USERS_LOGIN,
   USERS_REGISTER,
   USERS_LOGOUT,
+  USERS,
+  USERS_UPDATE_ROLES,
 } from '@/http/apis';
 import * as http from '@/http';
 import { sha256 } from '@/helpers/crypto';
@@ -66,11 +68,28 @@ const userLogout = async ({ commit }) => {
   return res;
 };
 
+const userList = async () => {
+  const res = await http.get(USERS)
+    .noCache();
+  return res;
+};
+
+const userUpdateRoles = async (tmp, { id, roles }) => {
+  const url = USERS_UPDATE_ROLES.replace(':id', id);
+  const res = await http.patch(url)
+    .send({
+      roles,
+    });
+  return res;
+};
+
 export const actions = {
   userGet,
   userLogin,
   userRegister,
   userLogout,
+  userList,
+  userUpdateRoles,
 };
 
 export default {

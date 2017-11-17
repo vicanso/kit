@@ -38,6 +38,7 @@
           i.font20.bold.iconfont.icon-shape01
       el-dropdown(
         :class='$style.user'
+        v-if='userInfo.account'
       )
         span.el-dropdown-link
           i.iconfont.icon-account.bold

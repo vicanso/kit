@@ -5,6 +5,15 @@ export default {
     return {
       items: [
         {
+          name: 'userManagement',
+          items: [
+            {
+              name: 'user',
+              route: 'user',
+            },
+          ],
+        },
+        {
           name: 'systemSetting',
           items: [
             {

@@ -4,7 +4,7 @@
       :data='mocks'
     )
       el-table-column(
-        :label='basicLangs.account'
+        :label='userLangs.account'
         prop='account'
       )
       el-table-column(
@@ -49,7 +49,7 @@
       label-width='80px'
     )
       el-form-item(
-        :label='basicLangs.account'
+        :label='userLangs.account'
       )
         el-input(
           v-model='form.account'
