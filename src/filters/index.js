@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import _ from 'lodash';
 
+import {
+  formatDate,
+} from '@/helpers/utils';
+
 Vue.filter('number', (value, precision) => {
   const v = parseFloat(value);
   if (_.isNil(precision)) {
@@ -16,3 +20,5 @@ Vue.filter('capitalize', (value) => {
   const v = value.toString();
   return v.charAt(0).toUpperCase() + v.substring(1);
 });
+
+Vue.filter('date', formatDate);

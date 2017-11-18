@@ -11,7 +11,7 @@ import { sha256 } from '@/helpers/crypto';
 import {
   setType,
   genPassword,
-} from '@/store/utils';
+} from '@/helpers/utils';
 import {
   USER_INFO,
 } from '@/store/mutation-types';

@@ -1,6 +1,10 @@
 import { mapState, mapActions } from 'vuex';
 import _ from 'lodash';
 
+import {
+  formatDate,
+} from '@/helpers/utils';
+
 export default {
   data() {
     return {
@@ -99,7 +103,11 @@ export default {
       const {
         body,
       } = await this.userList();
-      this.users = body.items;
+      const users = body.items;
+      _.forEach(users, (item) => {
+        item.lastLoginedAt = formatDate(item.lastLoginedAt);
+      });
+      this.users = users;
     } catch (err) {
       this.$alert(err);
     } finally {

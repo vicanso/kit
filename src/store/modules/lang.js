@@ -5,7 +5,7 @@ import {
   LANGS_CATEGORIES,
 } from '@/http/apis';
 import * as http from '@/http';
-import { setType } from '@/store/utils';
+import { setType } from '@/helpers/utils';
 import {
   LANG_LIST,
 } from '@/store/mutation-types';
