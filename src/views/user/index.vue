@@ -70,6 +70,14 @@
         closable=false
         v-if='!userInfo.account'
       )
+      el-alert(
+        :title='userLangs.notAllowAcess'
+        type='info'
+        center
+        show-icon
+        closable=false
+        v-else-if='!userInfo.isAdmin'
+      )
       div(
         v-else-if='mode == "form"'
         :class='$style.form'

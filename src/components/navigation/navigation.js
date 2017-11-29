@@ -31,6 +31,15 @@ export default {
             },
           ],
         },
+        {
+          name: 'systemSetting',
+          items: [
+            {
+              name: 'setting',
+              route: 'setting',
+            },
+          ],
+        },
       ],
     };
   },

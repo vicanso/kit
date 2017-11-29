@@ -9,6 +9,7 @@ const paths = {
   i18n: '/i18n',
   mock: '/mock',
   user: '/user',
+  setting: '/setting',
 };
 
 export default function get(name) {

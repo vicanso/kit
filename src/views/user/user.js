@@ -20,7 +20,7 @@ export default {
   methods: {
     ...mapActions([
       'userList',
-      'userUpdateRoles',
+      'userIsAdmin',
     ]),
     // 进入编辑模式
     goToEdit(index) {
@@ -98,6 +98,9 @@ export default {
     }),
   },
   async beforeMount() {
+    if (!this.userInfo.isAdmin) {
+      return;
+    }
     const close = this.$lockLoading();
     try {
       const {

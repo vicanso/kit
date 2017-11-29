@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {
   USERS_ME,
   USERS_LOGIN,
@@ -25,6 +27,12 @@ const state = {
 
 const mutations = {
   [type(USER_INFO)](state, data) {
+    if (data) {
+      const roles = _.get(data, 'roles');
+      const isAdmin = _.includes(roles, 'su') || _.includes(roles, 'admin');
+      data.isAdmin = isAdmin;
+      data.isSu = _.includes(roles, 'su');
+    }
     state.info = data;
   },
 };

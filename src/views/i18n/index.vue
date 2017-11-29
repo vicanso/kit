@@ -27,6 +27,7 @@
             prop='zh'
           )
           el-table-column(
+            v-if='userInfo.isAdmin'
             :label='basicLangs.operation'
           )
             template(
@@ -37,6 +38,7 @@
                 @click='goToEdit(scope.$index)'
               ) {{ basicLangs.edit }}
         el-button.capitalize.mtop10(
+          v-if='userInfo.isAdmin'
           style='width: 100%'
           type='primary'
           @click.native='goToAdd'
@@ -49,7 +51,7 @@
     )
       el-form-item(
         v-for='item in formItems'
-        :label='basicLangs[item.name]'
+        :label='basicLangs[item.name.toLowerCase()]'
         :key='item.name'
       )
         el-input(

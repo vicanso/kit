@@ -1,27 +1,19 @@
 <template lang='pug'>
-  mixin MocksTable
+  mixin SettingsTable
     el-table(
-      :data='mocks'
+      :data='settings'
     )
       el-table-column(
-        :label='userLangs.account'
-        prop='account'
+        :label='basicLangs.name'
+        prop='name'
       )
       el-table-column(
-        :label='basicLangs.url'
-        prop='url'
-      )
-      el-table-column(
-        :label='basicLangs.status'
-        prop='status'
+        :label='basicLangs.setting'
+        prop='data'
       )
       el-table-column(
         :label='basicLangs.disabled'
         prop='disabled'
-      )
-      el-table-column(
-        :label='basicLangs.response'
-        prop='response'
       )
       el-table-column(
         :label='basicLangs.description'
@@ -29,7 +21,6 @@
       )
       el-table-column(
         :label='basicLangs.operation'
-        v-if='userInfo.isAdmin'
       )
         template(
           slot-scope='scope'
@@ -38,36 +29,22 @@
             href='javascript:;'
             @click='goToEdit(scope.$index)'
           ) {{ basicLangs.edit }}
-
     el-button.capitalize.mtop10(
       v-if='userInfo.isAdmin'
       style='width: 100%'
       type='primary'
       @click.native='goToAdd'
     ) {{ basicLangs.add }}
-  mixin AddForm
+  mixin EditorForm
     el-form(
       :model='form'
       label-width='80px'
     )
       el-form-item(
-        :label='userLangs.account'
+        :label='basicLangs.name'
       )
         el-input(
-          v-model='form.account'
-        )
-      el-form-item(
-        :label='basicLangs.url'
-      )
-        el-input(
-          v-model='form.url'
-        )
-      el-form-item(
-        :label='basicLangs.status'
-      )
-        el-input(
-          type='number'
-          v-model='form.status'
+          v-model='form.name'
         )
       el-form-item(
         :label='basicLangs.disabled'
@@ -83,17 +60,19 @@
         )
           span.uppercase {{ basicLangs.no }}
       el-form-item(
-        :label='basicLangs.response'
+        :label='basicLangs.setting'
       )
         el-input(
           type='textarea'
           :rows='5'
-          v-model='form.response'
+          v-model='form.data'
         )
       el-form-item(
         :label='basicLangs.description'
       )
         el-input(
+          type='textarea'
+          :rows='3'
           v-model='form.description'
         )
       el-form-item
@@ -106,7 +85,7 @@
         ) {{ basicLangs.cancel }}
   .wg-content-wrapper
     div(
-      :class='$style.mockWrapper'
+      :class='$style.settingWrapper'
     )
       el-alert(
         :title='basicLangs.loginFirst'
@@ -116,16 +95,24 @@
         closable=false
         v-if='!userInfo.account'
       )
+      el-alert(
+        :title='userLangs.notAllowAcess'
+        type='info'
+        center
+        show-icon
+        closable=false
+        v-else-if='!userInfo.isAdmin'
+      )
       div(
         v-else-if='mode == "form"'
         :class='$style.form'
       )
-        +AddForm
+        +EditorForm
       div(
         v-else
       )
-        +MocksTable
+        +SettingsTable
 </template>
 
-<script src='./mock.js'></script>
-<style src='./mock.sss' lang='postcss' module></style>
+<script src='./setting.js'></script>
+<style src='./setting.sss' lang='postcss' module></style>

@@ -15,3 +15,6 @@ export const LANGS_CATEGORIES = '/i18ns/categories';
 
 export const MOCKS = '/mocks';
 export const MOCKS_UPDATE = '/mocks/:id';
+
+export const SETTINGS = '/settings';
+export const SETTINGS_UPDATE = '/settings/:id';

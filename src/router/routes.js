@@ -19,4 +19,5 @@ export default [
   create('i18n'),
   create('mock'),
   create('user'),
+  create('setting'),
 ];
