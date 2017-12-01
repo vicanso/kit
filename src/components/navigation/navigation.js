@@ -20,6 +20,10 @@ export default {
               name: 'i18n',
               route: 'i18n',
             },
+            {
+              name: 'setting',
+              route: 'setting',
+            },
           ],
         },
         {
@@ -28,15 +32,6 @@ export default {
             {
               name: 'mock',
               route: 'mock',
-            },
-          ],
-        },
-        {
-          name: 'systemSetting',
-          items: [
-            {
-              name: 'setting',
-              route: 'setting',
             },
           ],
         },
